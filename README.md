@@ -1,4 +1,4 @@
-sparki_lib
+Yet another Sparki Lib
 ==========
 
 Arduino robot lib
