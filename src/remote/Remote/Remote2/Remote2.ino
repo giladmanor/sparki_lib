@@ -12,9 +12,6 @@
 void setup() 
 { 
   sparki.clearLCD();
-  
-  pinMode(14, OUTPUT);
-  pinMode(18, OUTPUT);
 }
 
 // /------^-----\
@@ -40,14 +37,13 @@ void loop()
   switch(code){
     
   // Movement buttons
-  case 70: moveF();break;//sparki.moveForward(); break;
+  case 70: moveForward(); break;
   case 21: sparki.moveBackward(); break;
   case 67: 
-  case 71: moveR();break;//sparki.moveRight(); break;
+  case 71: sparki.moveRight(); break;
   case 68:
-  case 69: moveL();break;//sparki.moveLeft(); break;
-  case 64: stop();
-           sparki.moveStop(); 
+  case 69: sparki.moveLeft(); break;
+  case 64: sparki.moveStop(); 
            sparki.gripperStop();
            break;
 
@@ -71,33 +67,16 @@ void loop()
   
   default:
     break;
-    stop();
   }
 
   sparki.updateLCD();
 }
 
-void stop()
-{
-  digitalWrite(14, LOW);
-  digitalWrite(18, LOW);
+void moveForward(){
+  sparki.motorRotate(MOTOR_LEFT, DIR_CCW, 160,-1);
+  sparki.motorRotate(MOTOR_RIGHT, DIR_CW, 160,-1);
 }
 
-void moveF()
-{
-  digitalWrite(14, HIGH);
-  digitalWrite(18, HIGH);
-  
-}
-void moveR()
-{
-  digitalWrite(14, HIGH);
-  digitalWrite(18, LOW);
-}
 
-void moveL()
-{
-  digitalWrite(18, HIGH);
-  digitalWrite(14, LOW);
-}
+
 
